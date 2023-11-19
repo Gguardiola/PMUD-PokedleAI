@@ -234,7 +234,7 @@ var GameView = exports.GameView = /*#__PURE__*/function () {
       $("#img-col").append($('<img>').attr('src', pokemon.imgPath).addClass('pokeImg shadow mb-5 bg-body-tertiary rounded-3 mx-auto d-block w-50'));
       $("#buttons-col").append($('<button>').text('Hint').addClass("btn btn-outline-danger showHint"));
       $("#buttons-col").append($('<button>').text('Reroll').addClass("btn btn-outline-warning nextPokemon"));
-      $("#input-col").append($('<input>').attr("type", "text").attr("aria-describedby", "inputGroup-sizing-lg").attr("aria-label", "Sizing example input").attr("placeholder", "Guess the pokemon!").addClass("m-3 p-3 inputPokemon form-control"));
+      $("#input-col").append($('<input>').attr("type", "text").attr("aria-describedby", "inputGroup-sizing-lg").attr("aria-label", "Sizing example input").attr("placeholder", "Guess the pokemon!").addClass("mb-3 mt-3 p-3 inputPokemon form-control"));
       $("#input-col").append($('<button>').text("Guess!").addClass("ps-5 pe-5 btn btn-primary btn-lg guessPokemon"));
     }
   }, {
@@ -555,7 +555,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50250" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53649" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
