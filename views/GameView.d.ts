@@ -4,6 +4,7 @@ export declare class GameView {
     failedAttempt(attempts: number): void;
     disableHints(): void;
     rerollGame(): void;
+    updateModal(pokemon: Pokemon, hintCounter: number): void;
     triggerWin(pokemon: Pokemon): void;
     triggerGameOver(pokemon: Pokemon): void;
 }

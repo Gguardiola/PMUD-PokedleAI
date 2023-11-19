@@ -94,20 +94,9 @@ export class GameManager {
             this.attempts -= 1;
             this.gameView.failedAttempt(this.attempts);
             this.hintCounter += 1;
-            switch (this.hintCounter) {
-                case 1:
-                    alert(`Hint: Pokémon's type(s): "${this.currentPokemon.type}".`);
-                    break;
-                case 2:
-                    alert(`Hint: Pokémon's generation is: "${this.currentPokemon.gen}".`);
-                    break;
-                case 3:
-                    this.gameView.disableHints();
-                    alert(`Hint: The Pokémon's name starts with the letter "${this.currentPokemon.name.charAt(0)}".`);
-                    break;
-                default:
-                    break;
-            }
+            this.gameView.updateModal(this.currentPokemon, this.hintCounter);
+            if (this.hintCounter == 3)
+                this.gameView.disableHints();
             this.checkEndgame();
         }
     }

@@ -23,8 +23,8 @@ body {
 
 @media (max-width: 767px) {
   body {
-    text-shadow: none; /* Remove text-shadow */
-    box-shadow: none;  /* Remove box-shadow */
+    text-shadow: none;
+    box-shadow: none; 
   }
 }
 
