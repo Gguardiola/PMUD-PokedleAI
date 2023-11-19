@@ -75,17 +75,21 @@ export class GameManager {
     }
     guessTry(tryInput) {
         console.log(tryInput);
-        if (this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
+        if (tryInput.toString().length == 0)
+            alert("Escribe un pokemon!");
+        else if (this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
             this.gameView.triggerWin(this.currentPokemon);
         }
         else {
             this.attempts -= 1;
             this.gameView.failedAttempt(this.attempts);
+            this.checkEndgame();
         }
     }
     showHint() {
         if (this.hintCounter != MAX_HINTS) {
             this.attempts -= 1;
+            this.gameView.failedAttempt(this.attempts);
             this.hintCounter += 1;
             switch (this.hintCounter) {
                 case 1:
@@ -95,11 +99,18 @@ export class GameManager {
                     alert(`Hint: Pokémon's generation is: "${this.currentPokemon.gen}".`);
                     break;
                 case 3:
+                    this.gameView.disableHints();
                     alert(`Hint: The Pokémon's name starts with the letter "${this.currentPokemon.name.charAt(0)}".`);
                     break;
                 default:
                     break;
             }
+            this.checkEndgame();
+        }
+    }
+    checkEndgame() {
+        if (this.attempts == 0) {
+            this.gameView.triggerGameOver(this.currentPokemon);
         }
     }
 }

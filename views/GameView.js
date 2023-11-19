@@ -21,6 +21,9 @@ export class GameView {
     failedAttempt(attempts) {
         $(`.attempt-${MAX_ATTEMPS - attempts}`).addClass("opacity-25 waveText");
     }
+    disableHints() {
+        $(".showHint").attr("disabled", "");
+    }
     rerollGame() {
         $("#text-col").empty();
         $("#text-col").append($('<h1>').text("?????").addClass("mb-4"));
@@ -36,6 +39,14 @@ export class GameView {
         setTimeout(() => {
             $(".confetti").addClass("visually-hidden");
         }, 3700);
+    }
+    triggerGameOver(pokemon) {
+        $("#text-col").empty();
+        $("#text-col").append($('<h1>').text(pokemon.name).addClass("mb-4 pokeName pulsing pulse-gameover"));
+        $(".pokeImg").addClass("pulsing pulse-gameover-img");
+        $(".showHint").attr("disabled", "");
+        $(".input").attr("disabled", "");
+        $(".guessPokemon").attr("disabled", "").attr("readonly", "");
     }
 }
 //# sourceMappingURL=GameView.js.map

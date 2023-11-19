@@ -10,4 +10,5 @@ export declare class GameManager {
     private getRandomPokemon;
     private guessTry;
     private showHint;
+    private checkEndgame;
 }
