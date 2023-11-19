@@ -79,6 +79,9 @@ export class GameManager {
             alert("Escribe un pokemon!");
         else if (this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
             this.gameView.triggerWin(this.currentPokemon);
+            setTimeout(() => {
+                this.nextRound(true);
+            }, 3700);
         }
         else {
             this.attempts -= 1;
@@ -111,6 +114,9 @@ export class GameManager {
     checkEndgame() {
         if (this.attempts == 0) {
             this.gameView.triggerGameOver(this.currentPokemon);
+            setTimeout(() => {
+                this.nextRound(true);
+            }, 2000);
         }
     }
 }

@@ -34,6 +34,7 @@ export class GameView {
         $("#text-col").append($('<h1>').text(pokemon.name).addClass("mb-4 pokeName pulsing"));
         $(".pokeImg").addClass("pulsing");
         $(".showHint").attr("disabled", "");
+        $(".nextPokemon").attr("disabled", "");
         $(".input").attr("disabled", "");
         $(".guessPokemon").attr("disabled", "").attr("readonly", "");
         setTimeout(() => {
@@ -45,6 +46,7 @@ export class GameView {
         $("#text-col").append($('<h1>').text(pokemon.name).addClass("mb-4 pokeName pulsing pulse-gameover"));
         $(".pokeImg").addClass("pulsing pulse-gameover-img");
         $(".showHint").attr("disabled", "");
+        $(".nextPokemon").attr("disabled", "");
         $(".input").attr("disabled", "");
         $(".guessPokemon").attr("disabled", "").attr("readonly", "");
     }
