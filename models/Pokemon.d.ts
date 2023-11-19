@@ -1,4 +1,4 @@
-type PokemonType = "GRASS" | "STEEL" | "ROCK" | "FIRE" | "WATER" | "ELECTRIC" | "GROUND" | "NORMAL" | "POISON" | "GHOST" | "ICE" | "FLYING" | "FIGHTING" | "BUG" | "DARK" | "DRAGON" | "PSYCHIC";
+type PokemonType = "GRASS" | "STEEL" | "ROCK" | "FIRE" | "WATER" | "ELECTRIC" | "GROUND" | "NORMAL" | "POISON" | "GHOST" | "ICE" | "FLYING" | "FAIRY" | "FIGHTING" | "BUG" | "DARK" | "DRAGON" | "PSYCHIC";
 type GenType = "I" | "II" | "III" | "IV" | "V" | "VI" | "VII" | "VIII" | "IX";
 interface PokemonInfo {
     name: string;
