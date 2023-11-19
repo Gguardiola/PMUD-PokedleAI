@@ -7,26 +7,26 @@ const MAX_HINTS : number = env.MAX_HINTS;
 
 export class GameManager {
   private pokemons: Pokemon[] = [
-    new Pokemon({name: 'Charmander', type: ["FIRE"], imgPath: "../../images/test.jpeg", gen: "I"}),
-    new Pokemon({name: 'Squirtle', type: ["WATER"], imgPath: "../../images/test.jpeg", gen: "II"}),
-    new Pokemon({name: 'Pikachu', type: ["ELECTRIC"], imgPath: "../../images/test.jpeg", gen: "III"}),
-    new Pokemon({name: 'Jigglypuff', type: ["NORMAL"], imgPath: "../../images/test.jpeg", gen: "IV"}),
-    new Pokemon({name: 'Meowth', type: ["NORMAL"], imgPath: "../../images/meowth.jpeg", gen: "I"}),
-    new Pokemon({name: 'Psyduck', type: ["WATER"], imgPath: "../../images/test.jpeg", gen: "VI"}),
-    new Pokemon({name: 'Geodude', type: ["ROCK", "GROUND"], imgPath: "../../images/test.jpeg", gen: "VII"}),
-    new Pokemon({name: 'Machop', type: ["FIGHTING"], imgPath: "../../images/test.jpeg", gen: "VIII"}),
-    new Pokemon({name: 'Gastly', type: ["GHOST", "POISON"], imgPath: "../../images/test.jpeg", gen: "IX"}),
-    new Pokemon({name: 'Eevee', type: ["NORMAL"], imgPath: "../../images/test.jpeg", gen: "I"}),
-    new Pokemon({name: 'Snorlax', type: ["NORMAL"], imgPath: "../../images/test.jpeg", gen: "II"}),
-    new Pokemon({name: 'Vulpix', type: ["FIRE"], imgPath: "../../images/test.jpeg", gen: "III"}),
-    new Pokemon({name: 'Kabuto', type: ["ROCK", "WATER"], imgPath: "../../images/test.jpeg", gen: "IV"}),
-    new Pokemon({name: 'Dratini', type: ["DRAGON"], imgPath: "../../images/test.jpeg", gen: "V"}),
-    new Pokemon({name: 'Mareep', type: ["ELECTRIC"], imgPath: "../../images/test.jpeg", gen: "VI"}),
-    new Pokemon({name: 'Luxray', type: ["ELECTRIC"], imgPath: "../../images/luxray.jpeg", gen: "IV"}),
-    new Pokemon({name: 'Raticate', type: ["NORMAL"], imgPath: "../../images/raticate.jpeg", gen: "I"},undefined,["FIGHTING"]),
-    new Pokemon({name: 'Treecko', type: ["GRASS"], imgPath: "../../images/test.jpeg", gen: "IX"}),
-    new Pokemon({name: 'Mudkip', type: ["WATER"], imgPath: "../../images/test.jpeg", gen: "I"}),
-    new Pokemon({name: 'Combusken', type: ["FIRE","FIGHTING"], imgPath: "../../images/combusken.jpeg", gen: "III"}),
+    new Pokemon({name: 'Meowth', type: ["NORMAL"], imgPath: "https://i.imgur.com/B0JXocb.jpg", gen: "I"}),
+    new Pokemon({name: 'Sharkpedo', type: ["WATER","DARK"], imgPath: "https://i.imgur.com/qs7AlwH.jpg", gen: "III"}),
+    new Pokemon({name: 'Snorlax', type: ["NORMAL"], imgPath: "https://i.imgur.com/j7RRFvO.png", gen: "I"}),
+    new Pokemon({name: 'Druddigon', type: ["DRAGON"], imgPath: "https://i.imgur.com/5UI1ouV.jpg", gen: "V"}),
+    new Pokemon({name: 'Ukown', type: ["PSYCHIC"], imgPath: "https://i.imgur.com/bNOLUsQ.jpg", gen: "II"}),
+    new Pokemon({name: 'Rowlet', type: ["GRASS","FLYING"], imgPath: "https://i.imgur.com/Zxi7dCH.jpg", gen: "VII"}),
+    new Pokemon({name: 'Reshiram', type: ["DRAGON", "FIRE"], imgPath: "https://i.imgur.com/nXalWAf.jpg", gen: "V"}),
+    new Pokemon({name: 'Dialga', type: ["STEEL","DRAGON"], imgPath: "https://i.imgur.com/Kv5jfU4.jpg", gen: "IV"}),
+    new Pokemon({name: 'Palkia', type: ["WATER", "DRAGON"], imgPath: "https://i.imgur.com/KprMDet.jpg", gen: "IV"}),
+    new Pokemon({name: 'Haunter', type: ["GHOST","POISON"], imgPath: "https://i.imgur.com/op2tlGv.jpg", gen: "I"}),
+    new Pokemon({name: 'Zangoose', type: ["NORMAL"], imgPath: "https://i.imgur.com/2YmGQal.jpg", gen: "III"}),
+    new Pokemon({name: 'Gardevoir', type: ["FAIRY","PSYCHIC"], imgPath: "https://i.imgur.com/MQKhWsi.jpg", gen: "IV"}),
+    new Pokemon({name: 'Horsea', type: ["WATER"], imgPath: "https://i.imgur.com/qrkjjfd.jpg", gen: "I"}),
+    new Pokemon({name: 'Dratini', type: ["DRAGON"], imgPath: "https://i.imgur.com/ZQBwbY9.jpg", gen: "I"}),
+    new Pokemon({name: 'Infernape', type: ["FIRE","FIGHTING"], imgPath: "https://i.imgur.com/4VA4DDG.jpg", gen: "IV"}),
+    new Pokemon({name: 'Luxray', type: ["ELECTRIC"], imgPath: "https://i.imgur.com/moYFEI8.jpg", gen: "IV"}),
+    new Pokemon({name: 'Raticate', type: ["NORMAL"], imgPath: "https://i.imgur.com/F57sQ9s.jpg", gen: "I"},undefined,["FIGHTING"]),
+    new Pokemon({name: 'Treecko', type: ["GRASS"], imgPath: "https://i.imgur.com/S3QePBj.jpg", gen: "III"}),
+    new Pokemon({name: 'Ekans', type: ["POISON"], imgPath: "https://i.imgur.com/hwaUWcy.jpg", gen: "I"}),
+    new Pokemon({name: 'Combusken', type: ["FIRE","FIGHTING"], imgPath: "https://i.imgur.com/OYu52ZU.jpg", gen: "III"}),
   ];
 
   private currentPokemon : Pokemon = this.pokemons[0];
@@ -81,12 +81,17 @@ export class GameManager {
 
   private guessTry(tryInput : any): void { 
     console.log(tryInput);
-    if(this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
+    if(tryInput.toString().length == 0) alert("Escribe un pokemon!");
+    else if(this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
         this.gameView.triggerWin(this.currentPokemon);
+        setTimeout(() => {
+          this.nextRound(true);
+        }, 3700);
     } 
     else{
         this.attempts -= 1;
         this.gameView.failedAttempt(this.attempts);
+        this.checkEndgame();
    
     }
   }
@@ -94,20 +99,21 @@ export class GameManager {
   private showHint(): void {
     if(this.hintCounter != MAX_HINTS){
         this.attempts -= 1;
+        this.gameView.failedAttempt(this.attempts);
         this.hintCounter += 1;
-        switch (this.hintCounter){
-        case 1:
-            alert(`Hint: Pokémon's type(s): "${this.currentPokemon.type}".`);
-            break;
-        case 2:
-            alert(`Hint: Pokémon's generation is: "${this.currentPokemon.gen}".`);
-            break;
-        case 3:
-            alert(`Hint: The Pokémon's name starts with the letter "${this.currentPokemon.name.charAt(0)}".`);
-            break;
-        default:
-            break;
-        }
+        this.gameView.updateModal(this.currentPokemon, this.hintCounter);
+        if(this.hintCounter == 3) this.gameView.disableHints();
+        this.checkEndgame();
+        
+    }
+  }
+
+  private checkEndgame(): void{
+    if(this.attempts == 0){
+      this.gameView.triggerGameOver(this.currentPokemon);
+      setTimeout(() => {
+        this.nextRound(true);
+      }, 2000);
     }
   }
 }

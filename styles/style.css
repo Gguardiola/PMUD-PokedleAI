@@ -128,3 +128,46 @@
   height: 100%;
   z-index: 999;
 }
+
+::selection {
+  background-color: #FF0000; /* Replace with your desired color */
+  color: #ffffff; /* Text color when selected */
+}
+
+@keyframes pulse-gameoverKF {
+  0% {
+      color: white;
+      opacity: 1;
+  }
+  50% {
+      color: red;
+      opacity: 0.5;
+  }
+  100% {
+      color: white;
+      opacity: 1;
+  }
+}
+
+.pulse-gameover {
+  transition: transform 1s ease-in-out;
+  animation: pulse-gameoverKF 1s;
+}
+
+@keyframes pulse-gameoverKF_IMG {
+  0% {
+      opacity: 1;
+  }
+  50% {
+      fill: red;
+      opacity: 0.5;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+.pulse-gameover-img {
+  transition: transform 1s ease-in-out;
+  animation: pulse-gameoverKF_IMG 1s;
+}

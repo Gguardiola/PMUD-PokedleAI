@@ -9,14 +9,19 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel serve ./index.html",
+    "build": "cross-env NODE_ENV=production parcel build ./index.html --no-minify --public-url .",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "canvas-confetti": "^1.9.1",
+    "cross-env": "^5.2.0",
+    "gh-pages": "^1.2.0",
+    "parcel-bundler": "^1.9.7",
+    "typescript": "^5.2.2",
     "jquery": "^3.7.1"
   }
 }
