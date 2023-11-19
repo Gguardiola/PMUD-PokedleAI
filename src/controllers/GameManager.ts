@@ -1,8 +1,9 @@
 import { Pokemon } from '../models/Pokemon.js';
 import { GameView } from '../views/GameView.js';
+import * as env from "../lib/constants.js";
 
-const MAX_HINTS : number = 3;
-const MAX_ATTEMPS : number = 5;
+const MAX_ATTEMPS : number = env.MAX_ATTEMPS;
+const MAX_HINTS : number = env.MAX_HINTS;
 
 export class GameManager {
   private pokemons: Pokemon[] = [
@@ -10,7 +11,7 @@ export class GameManager {
     new Pokemon({name: 'Squirtle', type: ["WATER"], imgPath: "../../images/test.jpeg", gen: "II"}),
     new Pokemon({name: 'Pikachu', type: ["ELECTRIC"], imgPath: "../../images/test.jpeg", gen: "III"}),
     new Pokemon({name: 'Jigglypuff', type: ["NORMAL"], imgPath: "../../images/test.jpeg", gen: "IV"}),
-    new Pokemon({name: 'Meowth', type: ["NORMAL"], imgPath: "../../images/test.jpeg", gen: "V"}),
+    new Pokemon({name: 'Meowth', type: ["NORMAL"], imgPath: "../../images/meowth.jpeg", gen: "I"}),
     new Pokemon({name: 'Psyduck', type: ["WATER"], imgPath: "../../images/test.jpeg", gen: "VI"}),
     new Pokemon({name: 'Geodude', type: ["ROCK", "GROUND"], imgPath: "../../images/test.jpeg", gen: "VII"}),
     new Pokemon({name: 'Machop', type: ["FIGHTING"], imgPath: "../../images/test.jpeg", gen: "VIII"}),
@@ -21,11 +22,11 @@ export class GameManager {
     new Pokemon({name: 'Kabuto', type: ["ROCK", "WATER"], imgPath: "../../images/test.jpeg", gen: "IV"}),
     new Pokemon({name: 'Dratini', type: ["DRAGON"], imgPath: "../../images/test.jpeg", gen: "V"}),
     new Pokemon({name: 'Mareep', type: ["ELECTRIC"], imgPath: "../../images/test.jpeg", gen: "VI"}),
-    new Pokemon({name: 'Houndour', type: ["DARK", "FIRE"], imgPath: "../../images/test.jpeg", gen: "VII"}),
-    new Pokemon({name: 'Smoochum', type: ["ICE", "PSYCHIC"], imgPath: "../../images/test.jpeg", gen: "VIII"}),
+    new Pokemon({name: 'Luxray', type: ["ELECTRIC"], imgPath: "../../images/luxray.jpeg", gen: "IV"}),
+    new Pokemon({name: 'Raticate', type: ["NORMAL"], imgPath: "../../images/raticate.jpeg", gen: "I"},undefined,["FIGHTING"]),
     new Pokemon({name: 'Treecko', type: ["GRASS"], imgPath: "../../images/test.jpeg", gen: "IX"}),
     new Pokemon({name: 'Mudkip', type: ["WATER"], imgPath: "../../images/test.jpeg", gen: "I"}),
-    new Pokemon({name: 'Torchic', type: ["FIRE"], imgPath: "../../images/test.jpeg", gen: "II"},["BUG","DRAGON"],["DARK","FIGHTING"]),
+    new Pokemon({name: 'Combusken', type: ["FIRE","FIGHTING"], imgPath: "../../images/combusken.jpeg", gen: "III"}),
   ];
 
   private currentPokemon : Pokemon = this.pokemons[0];
@@ -50,6 +51,7 @@ export class GameManager {
     this.attempts = MAX_ATTEMPS;
     this.hintCounter = 0;
     this.gameView.render(this.currentPokemon);
+    this.gameView.rerollGame();
   }
 
   private getRandomPokemon(isClicked? : boolean): void {
@@ -79,14 +81,13 @@ export class GameManager {
 
   private guessTry(tryInput : any): void { 
     console.log(tryInput);
-    console.log(this.currentPokemon.resists)
     if(this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
-
-        alert("GANASTE!");
+        this.gameView.triggerWin(this.currentPokemon);
     } 
     else{
-        alert("MAAAL");
-    
+        this.attempts -= 1;
+        this.gameView.failedAttempt(this.attempts);
+   
     }
   }
 
