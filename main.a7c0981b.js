@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"dist/models/Pokemon.js":[function(require,module,exports) {
+})({"Dqlq":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -187,7 +187,7 @@ var Pokemon = exports.Pokemon = /*#__PURE__*/function () {
   }]);
   return Pokemon;
 }();
-},{}],"dist/lib/constants.js":[function(require,module,exports) {
+},{}],"DxTu":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -197,7 +197,7 @@ exports.MAX_HINTS = exports.MAX_ATTEMPS = exports.ATTEMPTS_IMG = void 0;
 var MAX_HINTS = exports.MAX_HINTS = 3;
 var MAX_ATTEMPS = exports.MAX_ATTEMPS = 5;
 var ATTEMPTS_IMG = exports.ATTEMPTS_IMG = "https://i.imgur.com/m4UWjJD.png";
-},{}],"dist/views/GameView.js":[function(require,module,exports) {
+},{}],"uMJi":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -208,6 +208,9 @@ var env = _interopRequireWildcard(require("../lib/constants.js"));
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -260,11 +263,6 @@ var GameView = exports.GameView = /*#__PURE__*/function () {
       $("#text-col").append($('<h1>').text("?????").addClass("mb-4"));
     }
   }, {
-    key: "emptyModal",
-    value: function emptyModal() {
-      $('#emptyModal-dummy').trigger("click");
-    }
-  }, {
     key: "updateModal",
     value: function updateModal(pokemon, hintCounter) {
       $("#hint-text-modal-head").empty();
@@ -272,17 +270,26 @@ var GameView = exports.GameView = /*#__PURE__*/function () {
       switch (hintCounter) {
         case 1:
           $("#hint-text-modal-head").text("The pokemon's type is: ");
-          for (var i = 0; i < pokemon.type.length; i++) {
-            $("#hint-text-modal-body").append($("<span>").addClass("fst-italic fw-bold p-3 text-shadow ".concat(pokemon.type[i])).text(" ".concat(pokemon.type[i], " ")));
+          var _iterator = _createForOfIteratorHelper(pokemon.type),
+            _step;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var type = _step.value;
+              $("#hint-text-modal-body").append("<span>").text("".concat(type));
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
           }
           break;
         case 2:
           $("#hint-text-modal-head").text("The pokemon's generation is: ");
-          $("#hint-text-modal-body").addClass("fst-italic fw-bold").text("Generation ".concat(pokemon.gen));
+          $("#hint-text-modal-body").text("".concat(pokemon.gen));
           break;
         case 3:
           $("#hint-text-modal-head").text("The Pokemon's name starts with the letter: ");
-          $("#hint-text-modal-body").addClass("fst-italic fw-bold").text("\"".concat(pokemon.name.charAt(0), "\""));
+          $("#hint-text-modal-body").text("".concat(pokemon.name.charAt(0)));
           break;
         default:
           break;
@@ -317,7 +324,7 @@ var GameView = exports.GameView = /*#__PURE__*/function () {
   }]);
   return GameView;
 }();
-},{"../lib/constants.js":"dist/lib/constants.js"}],"dist/controllers/GameManager.js":[function(require,module,exports) {
+},{"../lib/constants.js":"DxTu"}],"sdjq":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -469,9 +476,6 @@ var GameManager = exports.GameManager = /*#__PURE__*/function () {
       $(document).on('click', ".guessPokemon", function () {
         _this.guessTry($(".inputPokemon").val());
       });
-      $(document).on('submit', "#guessForm", function (e) {
-        e.preventDefault();
-      });
     }
   }, {
     key: "nextRound",
@@ -521,7 +525,7 @@ var GameManager = exports.GameManager = /*#__PURE__*/function () {
     value: function guessTry(tryInput) {
       var _this2 = this;
       console.log(tryInput);
-      if (tryInput.toString().length == 0) this.gameView.emptyModal();else if (this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
+      if (tryInput.toString().length == 0) alert("Escribe un pokemon!");else if (this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
         this.gameView.triggerWin(this.currentPokemon);
         setTimeout(function () {
           _this2.nextRound(true);
@@ -559,7 +563,7 @@ var GameManager = exports.GameManager = /*#__PURE__*/function () {
   }]);
   return GameManager;
 }();
-},{"../models/Pokemon.js":"dist/models/Pokemon.js","../views/GameView.js":"dist/views/GameView.js","../lib/constants.js":"dist/lib/constants.js"}],"dist/main.js":[function(require,module,exports) {
+},{"../models/Pokemon.js":"Dqlq","../views/GameView.js":"uMJi","../lib/constants.js":"DxTu"}],"J3CD":[function(require,module,exports) {
 "use strict";
 
 var _GameManager = require("./controllers/GameManager.js");
@@ -567,174 +571,5 @@ $(function () {
   var gameManager = new _GameManager.GameManager();
   gameManager.init();
 });
-},{"./controllers/GameManager.js":"dist/controllers/GameManager.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-var global = arguments[3];
-var OVERLAY_ID = '__parcel__error__overlay__';
-var OldModule = module.bundle.Module;
-function Module(moduleName) {
-  OldModule.call(this, moduleName);
-  this.hot = {
-    data: module.bundle.hotData,
-    _acceptCallbacks: [],
-    _disposeCallbacks: [],
-    accept: function (fn) {
-      this._acceptCallbacks.push(fn || function () {});
-    },
-    dispose: function (fn) {
-      this._disposeCallbacks.push(fn);
-    }
-  };
-  module.bundle.hotData = null;
-}
-module.bundle.Module = Module;
-var checkedAssets, assetsToAccept;
-var parent = module.bundle.parent;
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = "" || location.hostname;
-  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63613" + '/');
-  ws.onmessage = function (event) {
-    checkedAssets = {};
-    assetsToAccept = [];
-    var data = JSON.parse(event.data);
-    if (data.type === 'update') {
-      var handled = false;
-      data.assets.forEach(function (asset) {
-        if (!asset.isNew) {
-          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
-          if (didAccept) {
-            handled = true;
-          }
-        }
-      });
-
-      // Enable HMR for CSS by default.
-      handled = handled || data.assets.every(function (asset) {
-        return asset.type === 'css' && asset.generated.js;
-      });
-      if (handled) {
-        console.clear();
-        data.assets.forEach(function (asset) {
-          hmrApply(global.parcelRequire, asset);
-        });
-        assetsToAccept.forEach(function (v) {
-          hmrAcceptRun(v[0], v[1]);
-        });
-      } else if (location.reload) {
-        // `location` global exists in a web worker context but lacks `.reload()` function.
-        location.reload();
-      }
-    }
-    if (data.type === 'reload') {
-      ws.close();
-      ws.onclose = function () {
-        location.reload();
-      };
-    }
-    if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
-      removeErrorOverlay();
-    }
-    if (data.type === 'error') {
-      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
-      removeErrorOverlay();
-      var overlay = createErrorOverlay(data);
-      document.body.appendChild(overlay);
-    }
-  };
-}
-function removeErrorOverlay() {
-  var overlay = document.getElementById(OVERLAY_ID);
-  if (overlay) {
-    overlay.remove();
-  }
-}
-function createErrorOverlay(data) {
-  var overlay = document.createElement('div');
-  overlay.id = OVERLAY_ID;
-
-  // html encode message and stack trace
-  var message = document.createElement('div');
-  var stackTrace = document.createElement('pre');
-  message.innerText = data.error.message;
-  stackTrace.innerText = data.error.stack;
-  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
-  return overlay;
-}
-function getParents(bundle, id) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return [];
-  }
-  var parents = [];
-  var k, d, dep;
-  for (k in modules) {
-    for (d in modules[k][1]) {
-      dep = modules[k][1][d];
-      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
-        parents.push(k);
-      }
-    }
-  }
-  if (bundle.parent) {
-    parents = parents.concat(getParents(bundle.parent, id));
-  }
-  return parents;
-}
-function hmrApply(bundle, asset) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return;
-  }
-  if (modules[asset.id] || !bundle.parent) {
-    var fn = new Function('require', 'module', 'exports', asset.generated.js);
-    asset.isNew = !modules[asset.id];
-    modules[asset.id] = [fn, asset.deps];
-  } else if (bundle.parent) {
-    hmrApply(bundle.parent, asset);
-  }
-}
-function hmrAcceptCheck(bundle, id) {
-  var modules = bundle.modules;
-  if (!modules) {
-    return;
-  }
-  if (!modules[id] && bundle.parent) {
-    return hmrAcceptCheck(bundle.parent, id);
-  }
-  if (checkedAssets[id]) {
-    return;
-  }
-  checkedAssets[id] = true;
-  var cached = bundle.cache[id];
-  assetsToAccept.push([bundle, id]);
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    return true;
-  }
-  return getParents(global.parcelRequire, id).some(function (id) {
-    return hmrAcceptCheck(global.parcelRequire, id);
-  });
-}
-function hmrAcceptRun(bundle, id) {
-  var cached = bundle.cache[id];
-  bundle.hotData = {};
-  if (cached) {
-    cached.hot.data = bundle.hotData;
-  }
-  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
-    cached.hot._disposeCallbacks.forEach(function (cb) {
-      cb(bundle.hotData);
-    });
-  }
-  delete bundle.cache[id];
-  bundle(id);
-  cached = bundle.cache[id];
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    cached.hot._acceptCallbacks.forEach(function (cb) {
-      cb();
-    });
-    return true;
-  }
-}
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","dist/main.js"], null)
-//# sourceMappingURL=/main.7cfef742.js.map
+},{"./controllers/GameManager.js":"sdjq"}]},{},["J3CD"], null)
+//# sourceMappingURL=main.a7c0981b.js.map

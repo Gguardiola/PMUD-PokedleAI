@@ -41,6 +41,7 @@ export class GameManager {
         $(document).on('click', ".showHint", () => { this.showHint(); });
         $(document).on('click', ".nextPokemon", () => { this.nextRound(true); });
         $(document).on('click', ".guessPokemon", () => { this.guessTry($(".inputPokemon").val()); });
+        $(document).on('submit', "#guessForm", (e) => { e.preventDefault(); });
     }
     nextRound(isClicked) {
         this.getRandomPokemon(isClicked);
@@ -76,7 +77,7 @@ export class GameManager {
     guessTry(tryInput) {
         console.log(tryInput);
         if (tryInput.toString().length == 0)
-            alert("Escribe un pokemon!");
+            this.gameView.emptyModal();
         else if (this.currentPokemon.name.toLowerCase() == tryInput.toString().toLowerCase()) {
             this.gameView.triggerWin(this.currentPokemon);
             setTimeout(() => {
@@ -94,6 +95,7 @@ export class GameManager {
             this.attempts -= 1;
             this.gameView.failedAttempt(this.attempts);
             this.hintCounter += 1;
+            this.gameView.updateHints(this.hintCounter);
             this.gameView.updateModal(this.currentPokemon, this.hintCounter);
             if (this.hintCounter == 3)
                 this.gameView.disableHints();

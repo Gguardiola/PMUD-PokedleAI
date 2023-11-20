@@ -12,6 +12,7 @@ export class GameView {
         for (let i = 0; i < MAX_ATTEMPS; i++) {
             $("#attempts-container").append($("<img>").height(80).width(80).attr("src", ATTEMPTS_IMG).addClass(`attempt-${i + 1}`));
         }
+        $("#feedback-col").append("<p>").text(`Hints left: ${MAX_HINTS}`);
         $("#img-col").append($('<img>').attr('src', pokemon.imgPath).addClass('pokeImg shadow mb-5 bg-body-tertiary rounded-3 mx-auto d-block w-50'));
         $("#buttons-col").append($('<button>').attr("data-bs-toggle", "modal").attr("data-bs-target", "#hintModal").text('Hint').addClass("btn btn-outline-danger showHint "));
         $("#buttons-col").append($('<button>').text('Reroll').addClass("btn btn-outline-warning nextPokemon"));
@@ -24,21 +25,33 @@ export class GameView {
     disableHints() {
         $(".showHint").attr("disabled", "");
     }
+    updateHints(hintCounter) {
+        $("#feedback-col").append("<p>").text(`Hints left: ${MAX_HINTS - hintCounter}`);
+    }
     rerollGame() {
         $("#text-col").empty();
         $("#text-col").append($('<h1>').text("?????").addClass("mb-4"));
     }
+    emptyModal() {
+        $('#emptyModal-dummy').trigger("click");
+    }
     updateModal(pokemon, hintCounter) {
-        $("#hint-text-modal").empty();
+        $("#hint-text-modal-head").empty();
+        $("#hint-text-modal-body").empty();
         switch (hintCounter) {
             case 1:
-                $("#hint-text-modal").text(`Hint: Pokémon's type(s): "${pokemon.type}".`);
+                $("#hint-text-modal-head").text("The pokemon's type is: ");
+                for (let i = 0; i < pokemon.type.length; i++) {
+                    $("#hint-text-modal-body").append($("<span>").addClass(`fst-italic fw-bold p-3 text-shadow ${pokemon.type[i]}`).text(` ${pokemon.type[i]} `));
+                }
                 break;
             case 2:
-                $("#hint-text-modal").text(`Hint: Pokémon's generation is: "${pokemon.gen}".`);
+                $("#hint-text-modal-head").text("The pokemon's generation is: ");
+                $("#hint-text-modal-body").addClass("fst-italic fw-bold").text(`Generation ${pokemon.gen}`);
                 break;
             case 3:
-                $("#hint-text-modal").text(`Hint: The Pokémon's name starts with the letter "${pokemon.name.charAt(0)}".`);
+                $("#hint-text-modal-head").text("The Pokemon's name starts with the letter: ");
+                $("#hint-text-modal-body").addClass("fst-italic fw-bold").text(`"${pokemon.name.charAt(0)}"`);
                 break;
             default:
                 break;
