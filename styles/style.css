@@ -171,3 +171,59 @@
   transition: transform 1s ease-in-out;
   animation: pulse-gameoverKF_IMG 1s;
 }
+
+.GRASS{
+  background-color: #81b069;
+}
+.STEEL{
+  background-color: #a9a9b0;
+}
+.ROCK{
+  background-color: #b5a26c;
+}
+.FIRE{
+  background-color: #c95337;
+}
+.WATER{
+  background-color: #528dca;
+}
+.ELECTRIC{
+  background-color: #e4ca5d;
+}
+.NORMAL{
+  background-color: #a1a19c;
+}
+.GROUND{
+  background-color: #e1d296;
+}
+.POISON{
+  background-color: #8d6484;
+}
+.GHOST{
+  background-color: #434069;
+}
+.ICE{
+  background-color: #76bcd6;
+}
+.FLYING{
+  background-color: #a1a9e6;
+}
+.FAIRY{
+  background-color: #dca8df;
+}
+.FIGHTING{
+  background-color: #805749;
+}
+.BUG{
+  background-color: #a4b746;
+}
+.DARK{
+  background-color: #675f58;
+}
+.DRAGON{
+  background-color: #806fc9;
+}
+.PSYCHIC{
+  background-color: #ce7b98;
+}
+
