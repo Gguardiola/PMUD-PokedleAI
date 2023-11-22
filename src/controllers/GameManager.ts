@@ -8,7 +8,7 @@ const MAX_HINTS : number = env.MAX_HINTS;
 export class GameManager {
   private pokemons: Pokemon[] = [
     new Pokemon({name: 'Meowth', type: ["NORMAL"], imgPath: "https://i.imgur.com/B0JXocb.jpg", gen: "I"}),
-    new Pokemon({name: 'Sharkpedo', type: ["WATER","DARK"], imgPath: "https://i.imgur.com/qs7AlwH.jpg", gen: "III"}),
+    new Pokemon({name: 'Sharpedo', type: ["WATER","DARK"], imgPath: "https://i.imgur.com/qs7AlwH.jpg", gen: "III"}),
     new Pokemon({name: 'Snorlax', type: ["NORMAL"], imgPath: "https://i.imgur.com/j7RRFvO.png", gen: "I"}),
     new Pokemon({name: 'Druddigon', type: ["DRAGON"], imgPath: "https://i.imgur.com/5UI1ouV.jpg", gen: "V"}),
     new Pokemon({name: 'Ukown', type: ["PSYCHIC"], imgPath: "https://i.imgur.com/bNOLUsQ.jpg", gen: "II"}),

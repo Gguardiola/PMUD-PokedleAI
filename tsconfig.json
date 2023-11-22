@@ -111,5 +111,5 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "include": ["src/**/*", "src/images/*", "node_modules/@types"],
-  "exclude": [".git", "node_modules"]
+  "exclude": [".git", "node_modules","src/utils/confetti.js"]
 }

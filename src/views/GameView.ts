@@ -55,18 +55,18 @@ export class GameView {
     $("#hint-text-modal-body").empty();
     switch (hintCounter){
       case 1:
-        $("#hint-text-modal-head").text("The pokemon's type is: ");
+        $("#hint-text-modal-head").text("The Pokémon's type is: ");
         for(let i = 0; i < pokemon.type.length; i++){
           $("#hint-text-modal-body").append($("<span>").addClass(`fst-italic fw-bold p-3 text-shadow ${pokemon.type[i]}`).text(` ${pokemon.type[i]} `));
         }
         
         break;
       case 2:
-        $("#hint-text-modal-head").text("The pokemon's generation is: ");
+        $("#hint-text-modal-head").text("The Pokémon's generation is: ");
         $("#hint-text-modal-body").addClass("fst-italic fw-bold").text(`Generation ${pokemon.gen}`)
         break;
       case 3:
-        $("#hint-text-modal-head").text("The Pokemon's name starts with the letter: ");
+        $("#hint-text-modal-head").text("The Pokémon's name starts with the letter: ");
         $("#hint-text-modal-body").addClass("fst-italic fw-bold").text(`"${pokemon.name.charAt(0)}"`)
         break;
       default:
