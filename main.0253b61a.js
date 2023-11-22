@@ -349,7 +349,7 @@ var GameManager = exports.GameManager = /*#__PURE__*/function () {
       imgPath: "https://i.imgur.com/B0JXocb.jpg",
       gen: "I"
     }), new _Pokemon.Pokemon({
-      name: 'Sharkpedo',
+      name: 'Sharpedo',
       type: ["WATER", "DARK"],
       imgPath: "https://i.imgur.com/qs7AlwH.jpg",
       gen: "III"
@@ -568,4 +568,4 @@ $(function () {
   gameManager.init();
 });
 },{"./controllers/GameManager.js":"sdjq"}]},{},["J3CD"], null)
-//# sourceMappingURL=main.d679334c.js.map
+//# sourceMappingURL=main.0253b61a.js.map
