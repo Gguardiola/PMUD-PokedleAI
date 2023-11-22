@@ -6,11 +6,4 @@ $(function() {
   gameManager.init();
 
   
-  //tipado dinámico
-  let letra = "a";
-  letra = 0;
-
-
-
-
 });
